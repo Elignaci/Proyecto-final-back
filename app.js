@@ -11,6 +11,7 @@ const app = express()
 //Servidor
 const port = process.env.PORT 
 const {dbConector} =require('./helpers/dbConector')
+console.log(process.env)
 
 app.use(express.urlencoded({extended:false}))
 //parse aplication/json
@@ -22,8 +23,6 @@ app.use(cors())
 
 /* CONECTAR DB */
 dbConector()
-
-
 
 /* RUTAS */
 app.use('/api/v1/admin', require('./routers/routerAdmin'))
