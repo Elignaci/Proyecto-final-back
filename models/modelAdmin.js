@@ -7,12 +7,12 @@ const adminSchema = new Schema({
     },
 
     fuerza:{  
-        type:String, 
+        type:Number, 
         required:true
     },
     
     inteligencia:{
-        type:String, 
+        type:Number, 
         required:true
     },
     
@@ -27,4 +27,4 @@ const adminSchema = new Schema({
     },
 
 })
-module.exports = model('admin',adminSchema)
+module.exports = model('Admin',adminSchema)
