@@ -26,6 +26,7 @@ dbConector()
 
 /* RUTAS */
 app.use('/api/v1/admin', require('./routers/routerAdmin'))
+app.use('/api/v1/user', require('./routers/routerUsers'))
 
 
 /* LISTENER */
