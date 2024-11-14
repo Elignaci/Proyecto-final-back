@@ -22,9 +22,14 @@ const adminSchema = new Schema({
     },
     
     categoria:{
-        type:String, 
+        type:Schema.Types.ObjectId,
+        ref:'Category',
         required:true
     },
+  /*   categoria:{
+        type:String, 
+        required:true
+    }, */
 
 })
 module.exports = model('Admin',adminSchema)
