@@ -1,10 +1,10 @@
 const {Schema, model} = require('mongoose')
 
 const categorySchema = new Schema ({
-    category:{
+    categoria:{
         type:String,
         required:true
     }
 })
 
-module.exports=model('Category',categorySchema)
+module.exports=model('Categoria',categorySchema)

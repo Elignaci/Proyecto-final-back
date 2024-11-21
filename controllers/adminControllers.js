@@ -1,5 +1,6 @@
 const Admin = require('../models/modelAdmin.js');
-
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 const getCharacter = async (req, res) => {
     try {
@@ -41,8 +42,8 @@ const getCharacterById = async (req, res) => {
 
 const getCharacterByCategorie = async (req, res) => {
     try {
-        const category = req.params.category; 
-        const characters = await Admin.find({ category }); 
+        const categoria = req.params.categoria; 
+        const characters = await Admin.find({ categoria }); 
 
         if (characters.length === 0) { 
             return res.status(404).json({
@@ -53,7 +54,7 @@ const getCharacterByCategorie = async (req, res) => {
 
         return res.status(200).json({
             ok: true,
-            mensaje: `Personajes de la categoría: ${category}`,
+            mensaje: `Personajes de la categoría: ${categoria}`,
             data: characters
         });
     } catch (error) {
@@ -65,9 +66,13 @@ const getCharacterByCategorie = async (req, res) => {
 };
 
 const createCharacter = async (req, res) => {
+    const create = new Admin(req.body)
+    // console.log('req', req)
+    create.categoria = req.uid
+    console.log(req.uid)
     try {
-        const body = req.body
-        const create = new Admin(body)
+        
+        
         const characterCreated = await create.save()
         return res.status(201).json({
             ok: true,
@@ -76,6 +81,7 @@ const createCharacter = async (req, res) => {
         })
 
     } catch (error) {
+        console.log(error)
         return res.status(500).json({
             ok: false,
             mensaje: "Error al crear personaje"
@@ -86,8 +92,13 @@ const createCharacter = async (req, res) => {
 }
 
 const editCharacter = async(req, res) => {
+    const eventId = req.params.id
+    console.log(eventId)
+    
     try {
-        const character = await Admin.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+        const character = await Admin.findOneAndUpdate( { _id: eventId },
+            req.body,
+            { new: true })
         if (!character){
             return res.status(404).json({
                 ok: true,
