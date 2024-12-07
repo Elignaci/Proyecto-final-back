@@ -44,6 +44,6 @@ const adminSchema = new Schema({
     //     required:true},
 })
 
-// const File = mongoose.model('File', adminSchema)
+
 module.exports = model('Admin',adminSchema)
-// module.exports = File;
+

@@ -19,7 +19,27 @@ const getCharacter = async (req, res) => {
     }
 
 }
-
+/**Esta es una función asíncrona llamada
+getCharacterById
+que toma dos parámetros:
+ * 
+ * @param {*} req la solicitud
+ * @param {*} res la respuesta
+ * en ella por medio de un try que permite manejar errores. Si ocurre un error dentro de este bloque, se puede capturar en el bloque
+catch
+* La funcion id esta registrando la solicitud y el parametro
+* Se utiliza
+await
+para esperar el resultado de la operación asíncrona
+Admin.findById(id)
+, que busca un personaje en la base de datos utilizando el ID obtenido.
+Admin es el modelo de la base de datos 
+Si la búsqueda es exitosa, se envía una respuesta con un código de estado 200 (OK) y un objeto JSON que incluye:
+ok la operación fue exitosa.
+mensage un mensaje que dice que el personaje fue encontrado.
+y el objeto findCharacter
+ * @returns 
+ */
 const getCharacterById = async (req, res) => {
     try {
         const id = req.params.id
@@ -39,7 +59,15 @@ const getCharacterById = async (req, res) => {
     }
 
 }
-
+/** Esta es una función asíncrona llamada
+getCharacterById
+que toma dos parámetros:
+* @param {*} req la solicitud
+ * @param {*} res la respuesta
+ * la funcion categoria se encarga de registrar la solicitud y el parametro.
+ * 
+ * @returns 
+ */
 const getCharacterByCategorie = async (req, res) => {
     try {
         const categoria = req.params.categoria; 
@@ -64,12 +92,11 @@ const getCharacterByCategorie = async (req, res) => {
         });
     }
 };
+//Funcion encargada de crear un nuevo parsonaje 
 
 const createCharacter = async (req, res) => {
     const create = new Admin(req.body)
-    // console.log('req', req)
     create.categoria = req.uid
-    console.log(req.uid)
     try {
         
         
@@ -90,7 +117,7 @@ const createCharacter = async (req, res) => {
     }
 
 }
-
+//Funcion encargada de editar los personajes
 const editCharacter = async(req, res) => {
     const eventId = req.params.id
     console.log(eventId)
@@ -117,7 +144,7 @@ const editCharacter = async(req, res) => {
         })
     }
 }
-
+//Funcion encargada de eliminar los personajes
 const deleteCharacter = async (req, res) => {
     try {
         const id = req.params.id
